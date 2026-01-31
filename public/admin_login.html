@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Admin - Fun Run 10K</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #1a2a6c, #b21f1f);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .login-container {
+            background: white;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+            width: 100%;
+            max-width: 400px;
+            text-align: center;
+            animation: slideIn 0.5s ease;
+        }
+        
+        @keyframes slideIn {
+            from { transform: translateY(-20px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+        
+        .logo {
+            margin-bottom: 30px;
+        }
+        
+        .logo h1 {
+            color: #2c3e50;
+            font-size: 2rem;
+            margin-bottom: 5px;
+        }
+        
+        .logo span {
+            color: #e74c3c;
+        }
+        
+        .logo p {
+            color: #7f8c8d;
+            font-size: 0.9rem;
+        }
+        
+        .login-form input {
+            width: 100%;
+            padding: 15px;
+            margin-bottom: 20px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            font-size: 16px;
+            transition: all 0.3s;
+        }
+        
+        .login-form input:focus {
+            border-color: #3498db;
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.2);
+        }
+        
+        .login-btn {
+            width: 100%;
+            padding: 15px;
+            background: linear-gradient(to right, #2ecc71, #27ae60);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+        
+        .login-btn:hover {
+            background: linear-gradient(to right, #27ae60, #219653);
+            transform: translateY(-2px);
+        }
+        
+        .login-btn:disabled {
+            background: #95a5a6;
+            cursor: not-allowed;
+            transform: none;
+        }
+        
+        .error-message {
+            color: #e74c3c;
+            margin-bottom: 15px;
+            padding: 10px;
+            background: #ffebee;
+            border-radius: 5px;
+            display: none;
+        }
+        
+        .back-link {
+            display: block;
+            margin-top: 20px;
+            color: #3498db;
+            text-decoration: none;
+            font-weight: 500;
+        }
+        
+        .back-link:hover {
+            text-decoration: underline;
+        }
+        
+        .loading {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 3px solid rgba(255,255,255,.3);
+            border-radius: 50%;
+            border-top-color: white;
+            animation: spin 1s ease-in-out infinite;
+        }
+        
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+        
+        .shake {
+            animation: shake 0.5s ease-in-out;
+        }
+        
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            10%, 30%, 50%, 70%, 90% { transform: translateX(-5px); }
+            20%, 40%, 60%, 80% { transform: translateX(5px); }
+        }
+    </style>
+</head>
+<body>
+    <div class="login-container">
+        <div class="logo">
+            <h1>FunRun<span>10K</span> Admin</h1>
+            <p>Dashboard Management System</p>
+        </div>
+        
+        <div class="error-message" id="errorMessage">
+            <i class="fas fa-exclamation-circle"></i> Username atau password salah!
+        </div>
+        
+        <div class="login-form">
+            <input type="text" id="username" placeholder="Username" autocomplete="off">
+            <input type="password" id="password" placeholder="Password" autocomplete="off">
+            <button class="login-btn" id="loginBtn">
+                <i class="fas fa-sign-in-alt"></i> Login
+            </button>
+        </div>
+        
+        <a href="index.html" class="back-link">
+            <i class="fas fa-arrow-left"></i> Kembali ke halaman pendaftaran
+        </a>
+    </div>
+    
+    <script>
+        // Admin credentials
+        const ADMIN_CREDENTIALS = {
+            username: "admin",
+            password: "uwp2026"
+        };
+        
+        // Session timeout (24 jam dalam milidetik)
+        const SESSION_TIMEOUT = 24 * 60 * 60 * 1000;
+        
+        // DOM Elements
+        const usernameInput = document.getElementById('username');
+        const passwordInput = document.getElementById('password');
+        const loginBtn = document.getElementById('loginBtn');
+        const errorMessage = document.getElementById('errorMessage');
+        const loginContainer = document.querySelector('.login-container');
+        
+        // Cek jika sudah login
+        function checkExistingSession() {
+            const session = localStorage.getItem('adminSession');
+            if (session) {
+                try {
+                    const sessionData = JSON.parse(session);
+                    const currentTime = new Date().getTime();
+                    
+                    // Cek jika session masih valid
+                    if (currentTime - sessionData.timestamp < SESSION_TIMEOUT) {
+                        // Redirect langsung ke dashboard
+                        window.location.href = "admin.html";
+                    } else {
+                        // Session expired, hapus
+                        localStorage.removeItem('adminSession');
+                    }
+                } catch (e) {
+                    // Data session corrupt, hapus
+                    localStorage.removeItem('adminSession');
+                }
+            }
+        }
+        
+        // Login function
+        function performLogin() {
+            const username = usernameInput.value.trim();
+            const password = passwordInput.value;
+            
+            // Validasi input
+            if (!username || !password) {
+                showError('Username dan password harus diisi');
+                return;
+            }
+            
+            // Tampilkan loading
+            loginBtn.innerHTML = '<div class="loading"></div> Sedang login...';
+            loginBtn.disabled = true;
+            
+            // Simulasi delay untuk effect
+            setTimeout(() => {
+                if (username === ADMIN_CREDENTIALS.username && 
+                    password === ADMIN_CREDENTIALS.password) {
+                    
+                    // Simpan session
+                    const sessionData = {
+                        loggedIn: true,
+                        timestamp: new Date().getTime(),
+                        user: username,
+                        ip: 'localhost'
+                    };
+                    
+                    localStorage.setItem('adminSession', JSON.stringify(sessionData));
+                    
+                    // Redirect ke dashboard
+                    window.location.href = "admin.html";
+                    
+                } else {
+                    // Login gagal
+                    showError('Username atau password salah!');
+                    loginBtn.innerHTML = '<i class="fas fa-sign-in-alt"></i> Login';
+                    loginBtn.disabled = false;
+                    passwordInput.value = '';
+                    passwordInput.focus();
+                    
+                    // Shake animation
+                    loginContainer.classList.add('shake');
+                    setTimeout(() => {
+                        loginContainer.classList.remove('shake');
+                    }, 500);
+                }
+            }, 1000);
+        }
+        
+        // Show error message
+        function showError(message) {
+            errorMessage.innerHTML = `<i class="fas fa-exclamation-circle"></i> ${message}`;
+            errorMessage.style.display = 'block';
+            
+            // Auto hide setelah 5 detik
+            setTimeout(() => {
+                errorMessage.style.display = 'none';
+            }, 5000);
+        }
+        
+        // Event Listeners
+        loginBtn.addEventListener('click', performLogin);
+        
+        // Enter key support
+        passwordInput.addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                performLogin();
+            }
+        });
+        
+        // Clear error on input
+        usernameInput.addEventListener('input', function() {
+            errorMessage.style.display = 'none';
+        });
+        
+        passwordInput.addEventListener('input', function() {
+            errorMessage.style.display = 'none';
+        });
+        
+        // Auto-focus username on load
+        window.addEventListener('load', function() {
+            checkExistingSession();
+            usernameInput.focus();
+            
+            // Demo credentials hint (hapus di production)
+            console.log('Demo Credentials:', ADMIN_CREDENTIALS);
+        });
+        
+        // Prevent form submission on page refresh
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'F5' || (e.ctrlKey && e.key === 'r')) {
+                e.preventDefault();
+            }
+        });
+    </script>
+</body>
+</html>

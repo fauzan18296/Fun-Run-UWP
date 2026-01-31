@@ -1,0 +1,25 @@
+{
+  "name": "fun-run-uwp",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon --legacy-watch server.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "cors": "^2.8.6",
+    "dotenv": "^17.2.3",
+    "express": "^5.2.1",
+    "midtrans-client": "^1.4.3",
+    "mysql2": "^3.16.2"
+  },
+  "devDependencies": {
+    "body-parser": "^2.2.2",
+    "nodemon": "^3.1.11"
+  }
+}

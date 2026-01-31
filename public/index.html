@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pendaftaran Fun Run 10K</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+    <!-- LINK KE ADMIN -->
+    <a href="admin_login.html" class="admin-link" title="Admin Login">
+        <i class="fas fa-user-shield"></i>
+    </a>
+
+    <div class="container">
+        <header>
+            <h1><i class="fas fa-running"></i> FUN RUN 10K 2026</h1>
+            <p>Bergabunglah dalam acara lari santai sejauh 10 kilometer yang penuh keceriaan, kesehatan, dan kebersamaan!</p>
+            <p class="highlight">Pendaftaran ditutup dalam: <span id="countdown">30 hari 12 jam 30 menit</span></p>
+        </header>
+
+        <div class="main-content">
+            <section class="registration-form">
+                <h2>Formulir Pendaftaran</h2>
+                <form id="registrationForm">
+                    <div class="form-group">
+                        <label for="fullName"><i class="fas fa-user"></i> Nama Lengkap</label>
+                        <input type="text" id="fullName" name="fullName" required placeholder="Masukkan nama lengkap sesuai KTP">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email"><i class="fas fa-envelope"></i> Email</label>
+                        <input type="email" id="email" name="email" required placeholder="nama@contoh.com">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="phone"><i class="fas fa-phone"></i> Nomor WhatsApp</label>
+                        <input type="tel" id="phone" name="phone" required placeholder="08xx-xxxx-xxxx">
+                    </div>
+
+                    <div class="form-group">
+                        <label><i class="fas fa-venus-mars"></i> Jenis Kelamin</label>
+                        <div class="radio-group">
+                            <div class="radio-option">
+                                <input type="radio" id="male" name="gender" value="male" required>
+                                <label for="male">Laki-laki</label>
+                            </div>
+                            <div class="radio-option">
+                                <input type="radio" id="female" name="gender" value="female" required>
+                                <label for="female">Perempuan</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="birthDate"><i class="fas fa-birthday-cake"></i> Tanggal Lahir</label>
+                        <input type="date" id="birthDate" name="birthDate" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="shirtSize">
+                            <i class="fas fa-tshirt"></i> Ukuran Kaos
+                        </label>
+                    
+                        <small style="color:red;">
+                            * Ukuran XL ke atas dikenakan tambahan Rp25.000
+                        </small>
+                    
+                        <select id="shirtSize" name="shirtSize" required>
+                            <option value="">Pilih ukuran</option>
+                            <option value="S">S</option>
+                            <option value="M">M</option>
+                            <option value="L">L</option>
+                            <option value="XL">XL</option>
+                            <option value="XXL">XXL (+25.000)</option>
+                            <option value="XXXL">XXXL (+25.000)</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="emergencyContact"><i class="fas fa-phone-alt"></i> Kontak Darurat</label>
+                        <input type="text" id="emergencyContact" name="emergencyContact" required placeholder="Nama dan nomor telepon">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="healthInfo"><i class="fas fa-heartbeat"></i> Informasi Kesehatan</label>
+                        <textarea id="healthInfo" name="healthInfo" rows="3" placeholder="Kondisi kesehatan khusus, alergi, atau informasi medis penting lainnya (jika ada)"></textarea>
+                    </div>
+
+                    <button type="submit" class="btn-submit">
+                        <i class="fas fa-paper-plane"></i> DAFTAR SEKARANG - Rp 250.000
+                    </button>
+                    
+                    <div class="payment-info">
+                        <h4><i class="fas fa-credit-card"></i> Informasi Pembayaran</h4>
+                        <p>Setelah mengisi formulir, silakan transfer ke:</p>
+                        <p><strong>Bank BCA: 123-456-7890</strong></p>
+                        <p><strong>a.n. FUN RUN 10K</strong></p>
+                        <p>Konfirmasi pembayaran via WhatsApp: <strong>0895-3636-35300</strong></p>
+                    </div>
+                </form>
+            </section>
+
+            <section class="event-info">
+                <h2>Informasi Acara</h2>
+                <div class="event-details">
+                    <div class="detail-item">
+                        <i class="fas fa-calendar-alt"></i>
+                        <div>
+                            <strong>Tanggal Pelaksanaan</strong><br>
+                            Minggu, 28 Juni 2026
+                        </div>
+                    </div>
+
+                    <div class="detail-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <div>
+                            <strong>Lokasi Start & Finish</strong><br>
+                            Universitas Wijayaputra, Jl. Pd. Benowo Indah No.1-3, Babat Jerawat, Kec. Pakal, Surabaya, Jawa Timur 60197
+                        </div>
+                    </div>
+
+                    <div class="detail-item">
+                        <i class="fas fa-clock"></i>
+                        <div>
+                            <strong>Jadwal Acara</strong><br>
+                            04:00 WIB - Registrasi<br>
+                            05:00 WIB - Start Fun Run<br>
+                            09:00 WIB - Finish Line Celebration
+                        </div>
+                    </div>
+
+                    <div class="detail-item">
+                        <i class="fas fa-medal"></i>
+                        <div>
+                            <strong>Hadiah</strong><br>
+                            Finisher Medal dan Hadiah utama untuk juara 1, 2, 3
+                        </div>
+                    </div>
+                </div>
+
+                <div class="single-package">
+                    <h3 class="package-title">PAKET FUN RUN 10K</h3>
+                    <div class="package-price">
+                        Rp 250.000
+                        <span>Rp 500.000</span>
+                    </div>
+                    
+                    <ul class="package-features">
+                        <li><i class="fas fa-check"></i> Kaos Lari Eksklusif Fun Run 10K</li>
+                        <li><i class="fas fa-check"></i> Nomor BIB Resmi</li>
+                        <li><i class="fas fa-check"></i> Finisher Medal</li>
+                        <li><i class="fas fa-check"></i> Sertifikat Digital</li>
+                        <li><i class="fas fa-check"></i> Goodie Bag</li>
+                        <li><i class="fas fa-check"></i> Snack & Minuman Finish Line</li>
+                        <li><i class="fas fa-check"></i> Asuransi Peserta</li>
+                        <li><i class="fas fa-check"></i> Konsumsi di titik istirahat</li>
+                        <li><i class="fas fa-check"></i> Medical Support selama acara</li>
+                        <li><i class="fas fa-check"></i> Dokumentasi foto resmi</li>
+                    </ul>
+                    
+                    <a href="https://www.instagram.com/uwpfunrun?utm_source=qr&igsh=bjdkdTR5cmxrZ3Ux" 
+                       class="instagram-btn" target="_blank">
+                        <i class="fab fa-instagram"></i> Tanya via Instagram
+                    </a>
+                </div>
+                
+                <div class="counter">
+                    <p><i class="fas fa-users"></i> <strong id="totalParticipants">0</strong> peserta sudah mendaftar</p>
+                    <p><i class="fas fa-ticket-alt"></i> <strong id="remainingSlots">1,500</strong> slot tersisa</p>
+                    <p><i class="fas fa-fire"></i> <span id="dailyRegistrants">0</span> pendaftar hari ini</p>
+                </div>
+            </section>
+        </div>
+
+        <footer class="footer">
+            <p>&copy; 2026 Fun Run 10K. Hak Cipta Dilindungi.</p>
+            <p>Untuk informasi lebih lanjut, hubungi: @uwpFunrun | 0895-3636-35300</p>
+            <div style="margin-top: 15px;">
+                <a href="https://www.instagram.com/uwpfunrun?utm_source=qr&igsh=bjdkdTR5cmxrZ3Ux" style="color: white; margin: 0 10px;"><i class="fab fa-instagram fa-2x"></i></a>
+                <a href="#" style="color: white; margin: 0 10px;"><i class="fab fa-facebook fa-2x"></i></a>
+                <a href="#" style="color: white; margin: 0 10px;"><i class="fab fa-twitter fa-2x"></i></a>
+                <a href="#" style="color: white; margin: 0 10px;"><i class="fab fa-youtube fa-2x"></i></a>
+            </div>
+            <p style="margin-top: 15px; font-size: 0.9rem; color: rgba(255,255,255,0.8);">
+                Diselenggarakan oleh: BEM Universitas Wijayaputra
+            </p>
+        </footer>
+    </div>
+
+    <script>
+        // ======================
+        // FUNGSI UTAMA
+        // ======================
+
+        // Inisialisasi data jika belum ada
+        function initializeStorage() {
+            if (!localStorage.getItem('funrunRegistrations')) {
+                localStorage.setItem('funrunRegistrations', JSON.stringify([]));
+            }
+            if (!localStorage.getItem('totalParticipants')) {
+                localStorage.setItem('totalParticipants', '0');
+            }
+            if (!localStorage.getItem('dailyRegistrants')) {
+                localStorage.setItem('dailyRegistrants', '0');
+            }
+            if (!localStorage.getItem('lastCounterUpdate')) {
+                localStorage.setItem('lastCounterUpdate', new Date().toDateString());
+            }
+        }
+
+        // Countdown timer
+        function updateCountdown() {
+            const eventDate = new Date('June 28, 2026 23:59:59').getTime();
+            const now = new Date().getTime();
+            const distance = eventDate - now;
+            
+            if (distance < 0) {
+                document.getElementById('countdown').innerHTML = 'Pendaftaran telah ditutup';
+                return;
+            }
+            
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            
+            document.getElementById('countdown').innerHTML = 
+                `${days} hari ${hours} jam ${minutes} menit`;
+        }
+
+        // Update counters display
+        function updateCountersDisplay() {
+            const totalParticipants = parseInt(localStorage.getItem('totalParticipants') || '0');
+            const dailyRegistrants = parseInt(localStorage.getItem('dailyRegistrants') || '0');
+            const remainingSlots = 1500 - totalParticipants;
+            
+            document.getElementById('totalParticipants').textContent = totalParticipants;
+            document.getElementById('remainingSlots').textContent = remainingSlots;
+            document.getElementById('dailyRegistrants').textContent = dailyRegistrants;
+        }
+
+        // Simpan data pendaftaran
+        function saveRegistration(data) {
+            const registrations = JSON.parse(localStorage.getItem('funrunRegistrations')) || [];
+            
+            // Buat ID unik
+            data.id = Date.now();
+            data.registrationDate = new Date().toISOString();
+            data.paymentStatus = 'pending';
+            
+            // Hitung total biaya
+            data.amount = 250000;
+            if (data.shirtSize === 'XXL' || data.shirtSize === 'XXXL') {
+                data.amount += 25000;
+                data.additionalNote = 'Tambahan Rp 25.000 untuk ukuran ' + data.shirtSize;
+            }
+            
+            registrations.push(data);
+            localStorage.setItem('funrunRegistrations', JSON.stringify(registrations));
+            
+            // Update counters
+            let totalParticipants = parseInt(localStorage.getItem('totalParticipants') || '0');
+            totalParticipants++;
+            localStorage.setItem('totalParticipants', totalParticipants.toString());
+            
+            // Update daily counter (reset jika beda hari)
+            const today = new Date().toDateString();
+            const lastUpdate = localStorage.getItem('lastCounterUpdate');
+            
+            let dailyRegistrants = parseInt(localStorage.getItem('dailyRegistrants') || '0');
+            if (lastUpdate !== today) {
+                dailyRegistrants = 0;
+                localStorage.setItem('lastCounterUpdate', today);
+            }
+            
+            dailyRegistrants++;
+            localStorage.setItem('dailyRegistrants', dailyRegistrants.toString());
+            
+            return data;
+        }
+
+        // Form submission handler
+        document.getElementById('registrationForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Kumpulkan data form
+            const formData = {
+                name: document.getElementById('fullName').value,
+                email: document.getElementById('email').value,
+                phone: document.getElementById('phone').value,
+                gender: document.querySelector('input[name="gender"]:checked').value,
+                birthDate: document.getElementById('birthDate').value,
+                shirtSize: document.getElementById('shirtSize').value,
+                emergencyContact: document.getElementById('emergencyContact').value,
+                healthInfo: document.getElementById('healthInfo').value,
+                package: 'Fun Run 10K'
+            };
+            
+            // Validasi usia
+            const birthDate = new Date(formData.birthDate);
+            const today = new Date();
+            let age = today.getFullYear() - birthDate.getFullYear();
+            const monthDiff = today.getMonth() - birthDate.getMonth();
+            
+            if (monthDiff < 0 || (monthDiff === 0 && today.getDate() < birthDate.getDate())) {
+                age--;
+            }
+            
+            if (age < 17) {
+                alert('Peserta harus berusia minimal 17 tahun untuk mengikuti Fun Run 10K');
+                return;
+            }
+            
+            if (age > 50) {
+                const confirmed = confirm('Peserta di atas 50 tahun memerlukan surat izin dokter. Apakah Anda memiliki surat izin dokter?');
+                if (!confirmed) return;
+            }
+            
+            // Simpan data
+            const savedData = saveRegistration(formData);
+            
+            // Qris transaksi
+            async function transactionQris() {
+            const endpointUrlPayment = 'http://localhost:4000/api/create-payment'
+            const transactionQris = await fetch(endpointUrlPayment, {
+                method:'POST',
+                headers: {
+                "Content-Type": "application/json",
+                },
+            })
+            if (!transactionQris.ok) {
+                throw new Error(`HTTP error! status: ${transactionQris.status}`)
+            }
+            const response = await transactionQris.json()
+            return response
+            }
+
+            const transactionQrisMethod = transactionQris()
+            .then((res) => console.log(res))
+            
+
+            // Tampilkan konfirmasi
+            const totalAmount = savedData.amount;
+            const confirmationMessage = `
+                TERIMA KASIH ${savedData.name.toUpperCase()}!
+
+                Pendaftaran Fun Run 10K berhasil!
+
+                Detail Pendaftaran:
+                • ID: #FR${String(savedData.id).slice(-6)}
+                • Nama: ${savedData.name}
+                • Email: ${savedData.email}
+                • No. WhatsApp: ${savedData.phone}
+                • Ukuran Kaos: ${savedData.shirtSize}
+                • Total Biaya: Rp ${totalAmount.toLocaleString('id-ID')}
+                ${savedData.additionalNote ? `\n*${savedData.additionalNote}` : ''}
+
+                Silakan transfer ke:
+                Bank BCA: 123-456-7890 atau
+                ${transactionQrisMethod}
+                a.n. FUN RUN 10K
+
+                Konfirmasi pembayaran via WhatsApp:
+                0895-3636-35300
+
+                Simpan informasi ini sebagai bukti pendaftaran.
+            `;
+            
+            alert(confirmationMessage);
+            
+            // Reset form
+            this.reset();
+            
+            // Update display
+            updateCountersDisplay();
+        });
+
+        // Initialize on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            initializeStorage();
+            updateCountdown();
+            updateCountersDisplay();
+            
+            // Update countdown setiap menit
+            setInterval(updateCountdown, 60000);
+            
+            // Set max date untuk tanggal lahir (minimal 17 tahun)
+            const today = new Date();
+            const maxDate = new Date(today.getFullYear() - 17, today.getMonth(), today.getDate());
+            document.getElementById('birthDate').max = maxDate.toISOString().split('T')[0];
+            
+            // Set min date untuk tanggal lahir (max 100 tahun)
+            const minDate = new Date(today.getFullYear() - 100, today.getMonth(), today.getDate());
+            document.getElementById('birthDate').min = minDate.toISOString().split('T')[0];
+        });
+
+        // Instagram button animation
+        document.querySelector('.instagram-btn').addEventListener('mouseenter', function() {
+            this.style.transform = 'translateY(-3px) scale(1.05)';
+        });
+        
+        document.querySelector('.instagram-btn').addEventListener('mouseleave', function() {
+            this.style.transform = 'translateY(0) scale(1)';
+        });
+    </script>
+</body>
+</html>
