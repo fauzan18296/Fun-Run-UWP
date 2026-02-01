@@ -6,36 +6,35 @@ import midtransClient from 'midtrans-client'
 import 'dotenv/config'
 const app = express();
 
+app.use(cors());
+app.use(bodyParser.json());
 
 const snap = new midtransClient.Snap({
     isProduction: false, // true untuk production
-    serverKey: 'YOUR_SERVER_KEY',
-    clientKey: 'YOUR_CLIENT_KEY'
+    serverKey: process.env.MIDTRANS_SERVER_KEY,
+    clientKey: process.env.MIDTRANS_CLIENT_KEY
 });
 
 try{
 // Tambahkan di endpoint register
 app.post('/api/create-payment', async (req, res) => {
     const parameter = {
-        "transaction_details": {
-            "order_id": req.body.order_id,
-            "gross_amount": req.body.amount
+        transaction_details: {
+            order_id: req.body.order_id,
+            gross_amount: Number(req.body.amount)
         },
-        "credit_card": {
-            "secure": true
+        credit_card: {
+            secure: true
         },
-        "enabled_payments": ["qris"] // Hanya QRIS
+        enabled_payments: ["qris", "gopay", "shopeepay"] // Payment gateway hanya gopay qris, shopeepay qris.
     };
     
-    const transaction = await snap.createTransaction(parameter);
+    const transaction = (await snap.createTransaction(parameter));
     res.json(transaction);
 });
 } catch(err) {
   throw new Error(`Failed connect to midtrans: ${err}`)
 }
-
-app.use(cors());
-app.use(bodyParser.json());
 
 // Koneksi database
 //* FIXME: Have a error because db not have password!

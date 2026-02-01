@@ -189,6 +189,11 @@
         </footer>
     </div>
 
+    <script
+    src="https://app.sandbox.midtrans.com/snap/snap.js" 
+    data-client-key="Mid-client-qSu32UhIDViFmpc3"
+    ></script>
+
     <script>
         // ======================
         // FUNGSI UTAMA
@@ -324,10 +329,14 @@
             async function transactionQris() {
             const endpointUrlPayment = 'http://localhost:4000/api/create-payment'
             const transactionQris = await fetch(endpointUrlPayment, {
-                method:'POST',
+                method: 'POST',
                 headers: {
                 "Content-Type": "application/json",
                 },
+                body: JSON.stringify({
+                    order_id: `ORDER-${Date.now()}`,
+                    amount: 250_000
+                })
             })
             if (!transactionQris.ok) {
                 throw new Error(`HTTP error! status: ${transactionQris.status}`)
@@ -335,10 +344,25 @@
             const response = await transactionQris.json()
             return response
             }
-
-            const transactionQrisMethod = transactionQris()
-            .then((res) => console.log(res))
             
+            // Render payment method qris
+            const transactionQrisMethod = transactionQris()
+            .then(res => {
+                        snap.pay(res.token, {
+                        onSuccess: function(result){
+                            console.log('success', result);
+                        },
+                        onPending: function(result){
+                            console.log('pending', result);
+                        },
+                        onError: function(result){
+                            console.log('error', result);
+                        }
+                    });
+                })
+                .catch(err => console.error('QRIS error:', err.message))
+                console.log(transactionQrisMethod);
+                
 
             // Tampilkan konfirmasi
             const totalAmount = savedData.amount;
@@ -357,8 +381,7 @@
                 ${savedData.additionalNote ? `\n*${savedData.additionalNote}` : ''}
 
                 Silakan transfer ke:
-                Bank BCA: 123-456-7890 atau
-                ${transactionQrisMethod}
+                Bank BCA: 123-456-7890
                 a.n. FUN RUN 10K
 
                 Konfirmasi pembayaran via WhatsApp:

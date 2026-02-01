@@ -97,11 +97,16 @@ This is very important because **configuration** relates to **env(environment)**
 - **HOSTNAME DATABASE**
 - **PASSWORD DATABASE**
 - **DATABASE NAME**
+- **MIDTRANS CLIEN KEY**
+- **MIDTRANS SERVER KEY**
 - etc.
+
 Example:
 
 ```
 PORT=4000
+MIDTRANS_CLIENT_KEY="YOUR_CLIENT_SERVER" # ? This client key from midtrans payment gateway in production status or sandbox status
+MIDTRANS_SERVER_KEY="YOUR_SERVER_KEY" # ? This server key from midtrans payment gateway  in production status or sandbox status
 ```
 
 
